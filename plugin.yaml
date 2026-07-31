@@ -1,6 +1,7 @@
 name: talmudic-harness
-version: 0.2.0
+version: 0.2.1
 manifest_version: 1
+author: Danny Rosen
 description: >-
   Talmudic AI harness as a user plugin: Amoraic question refinement,
   deterministic Chavrusa proposer/challenger briefs, Teaching Friend
@@ -8,5 +9,5 @@ description: >-
   hermes update without carried core commits.
 provides_tools:
   - talmudic_harness
-hooks:
+provides_hooks:
   - pre_llm_call

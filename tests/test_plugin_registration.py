@@ -47,6 +47,13 @@ def load_plugin(config):
 
 
 class PluginRegistrationTest(unittest.TestCase):
+    def test_manifest_declares_current_hook_metadata(self) -> None:
+        manifest = (ROOT / "plugin.yaml").read_text(encoding="utf-8")
+
+        self.assertIn("version: 0.2.1", manifest)
+        self.assertIn("provides_hooks:\n  - pre_llm_call", manifest)
+        self.assertNotIn("\nhooks:", manifest)
+
     def test_registers_tool_and_quiet_hook_by_default(self) -> None:
         plugin = load_plugin(
             {"talmudic_harness": {"enabled": True, "prompt_guidance": False}}
