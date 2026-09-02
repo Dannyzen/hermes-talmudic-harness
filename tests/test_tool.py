@@ -70,6 +70,11 @@ TOOL = load_tool_module()
 
 
 class ToolBehaviorTest(unittest.TestCase):
+    def test_schema_description_is_job_shaped(self) -> None:
+        description = TOOL.TALMUDIC_HARNESS_SCHEMA["description"]
+        self.assertTrue(description.startswith("Use for contested or irreversible decisions."))
+        self.assertIn("Does not spawn agents", description)
+        self.assertLessEqual(description.index("."), 57)
     def setUp(self) -> None:
         self.home = Path(tempfile.mkdtemp())
         self.home_patch = patch.object(TOOL, "get_hermes_home", return_value=self.home)

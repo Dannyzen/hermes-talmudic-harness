@@ -45,19 +45,6 @@ DEFAULT_TALMUDIC_HARNESS_CONFIG: Dict[str, Any] = {
 }
 
 
-TALMUDIC_HARNESS_PROMPT_GUIDANCE = """
-Talmudic AI Harness: when this mode is enabled and the talmudic_harness tool is
-available, use explicit logical signposts for hard reasoning tasks. Start with a
-kushya by calling talmudic_harness(action="refine_question") when the best next
-question is unclear. Use Chavrusa structure for contested solution paths: keep a
-proposer and challenger isolated, compare their claims, and only then converge.
-Use the Teaching Friend check to restate the answer in plain English and detect
-skipped logical steps. Preserve Eduyot as compact rejected or minority branches
-with reasons, using memory or session_search only when the branch is likely to
-matter in future sessions.
-""".strip()
-
-
 def _deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
     result = deepcopy(base)
     for key, value in (override or {}).items():
@@ -145,31 +132,34 @@ def build_talmudic_harness_prompt_guidance(
         return ""
 
     guidance = [
-        "Talmudic AI Harness: use explicit logical signposts for hard reasoning tasks."
+        "Talmudic AI Harness: call talmudic_harness only for contested, irreversible, "
+        "or overclaim-risky work. Skip status, facts, and one-line edits."
     ]
     if harness_config["amoraic"]["enabled"]:
         guidance.append(
             "Start with a kushya by calling "
-            'talmudic_harness(action="refine_question") when the best next '
+            'talmudic_harness(action="refine_question") when the next '
             "question is unclear."
         )
     if harness_config["chavrusa"]["enabled"]:
         guidance.append(
-            "Use Chavrusa structure for contested solution paths: keep a proposer "
-            "and challenger isolated, compare their claims, and only then converge."
+            "Use chavrusa_brief for contested solution paths, then dispatch isolated "
+            "proposer and challenger yourself."
         )
     if harness_config["teaching_friend"]["enabled"]:
         guidance.append(
-            "Use the Teaching Friend check to restate the answer in plain English "
-            "and detect skipped logical steps."
+            "Use teaching_friend_request to catch skipped logical steps."
         )
     if (
         harness_config["eduyot"]["enabled"]
         and harness_config["eduyot"]["retain_rejected_branches"]
     ):
         guidance.append(
-            "Preserve Eduyot as compact rejected or minority branches with reasons."
+            "Use eduyot_entry to persist rejected branches that may return."
         )
+    guidance.append(
+        "The tool does not spawn agents. Briefs are not a completed review."
+    )
     return " ".join(guidance)
 
 

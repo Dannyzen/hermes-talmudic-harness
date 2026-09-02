@@ -43,9 +43,9 @@ _LEGACY_DEFAULT_LEDGER_PATH = "~/.hermes/talmudic_harness/eduyot.jsonl"
 TALMUDIC_HARNESS_SCHEMA = {
     "name": "talmudic_harness",
     "description": (
-        "Run deterministic Talmudic harness primitives: Amoraic question "
-        "refinement, Chavrusa proposer/challenger briefs, Teaching Friend "
-        "verification requests, and Eduyot rejected-branch entries."
+        "Use for contested or irreversible decisions. Ranked Q_opt, isolated "
+        "Grok vs Codex briefs (caller dispatches), skipped-step check, or "
+        "rejected-branch ledger. Does not spawn agents."
     ),
     "parameters": {
         "type": "object",

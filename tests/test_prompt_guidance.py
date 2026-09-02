@@ -29,7 +29,8 @@ class PromptGuidanceDefaultsTest(unittest.TestCase):
         self.assertTrue(config["prompt_guidance"])
         guidance = HARNESS.build_talmudic_harness_prompt_guidance(config)
         self.assertIn("Talmudic AI Harness", guidance)
-        self.assertIn("hard reasoning tasks", guidance)
+        self.assertIn("contested, irreversible", guidance)
+        self.assertIn("does not spawn agents", guidance.lower())
 
 
 class PrimitiveBehaviorTest(unittest.TestCase):

@@ -1,11 +1,13 @@
 # talmudic-harness (user plugin)
 
-Moves the Talmudic AI harness out of the Hermes core checkout so
-`hermes update` no longer depends on carried local commits.
+Hire this plugin for contested, irreversible, or overclaim-risky work:
+architecture, security, privacy, deployment, data-loss, or a two-door plan
+whose first path may be wrong. Skip status, facts, and one-line edits.
 
-The rabbinic terms are disciplined engineering metaphors for source grounding,
-adversarial review, rejected-branch retention, and verification. They are not
-claims of religious or halachic authority.
+It is four deterministic primitives, not a reasoning engine, and it does not
+spawn reviewers. Rabbinic terms are engineering metaphors, not authority
+claims. Lives outside the Hermes core checkout so `hermes update` no longer
+depends on carried local commits.
 
 ## Install
 
@@ -45,15 +47,17 @@ Restart the gateway after enabling: `systemctl --user restart hermes-gateway.ser
 
 ## Actions
 
-- `refine_question` — Amoraic Q_opt matrix
-- `chavrusa_brief` — deterministic proposer/challenger briefs for caller-managed review
-- `teaching_friend_request` — deterministic plain-English verifier request
-- `eduyot_entry` — append-only JSONL under `~/.hermes/talmudic_harness/`
+Call the action that produces the artifact you need:
 
-The plugin does not spawn agents itself. Current Hermes delegation inherits the
+- `refine_question` — ranked Q_opt matrix when the next question is unclear
+- `chavrusa_brief` — isolated proposer/challenger briefs when you will dispatch both leaves
+- `teaching_friend_request` — plain-English skipped-step check
+- `eduyot_entry` — append-only JSONL under `~/.hermes/talmudic_harness/` for rejected branches that may return
+
+The plugin does not spawn agents. Current Hermes delegation inherits the
 parent's tools and does not provide this plugin a safe internal way to enforce a
-read-only child. The calling agent may use the returned briefs with an explicit,
-restricted delegation tool when the task justifies the cost.
+read-only child. Briefs are `executor: caller_managed`. If dispatch is skipped,
+no review ran.
 
 ## Prompt guidance
 
@@ -62,5 +66,5 @@ Uses plugin `pre_llm_call` (ephemeral user context), not a core system-prompt pa
 Prompt guidance is disabled by default. Enabling the plugin keeps the
 `talmudic_harness` tool available without injecting Talmudic instructions into
 every turn. Set `talmudic_harness.prompt_guidance: true` only when you want
-always-on guidance; otherwise invoke the tool explicitly for unusually hard,
-high-stakes, or contested reasoning.
+always-on guidance; otherwise invoke the tool explicitly for contested,
+irreversible, or overclaim-risky work.
