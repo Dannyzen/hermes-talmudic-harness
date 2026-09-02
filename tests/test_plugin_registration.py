@@ -50,7 +50,9 @@ class PluginRegistrationTest(unittest.TestCase):
     def test_manifest_declares_current_hook_metadata(self) -> None:
         manifest = (ROOT / "plugin.yaml").read_text(encoding="utf-8")
 
-        self.assertIn("version: 0.2.1", manifest)
+        self.assertIn("version: 0.2.2", manifest)
+        self.assertIn("Use for contested or irreversible decisions", manifest)
+        self.assertIn("Does not spawn agents", manifest)
         self.assertIn("provides_hooks:\n  - pre_llm_call", manifest)
         self.assertNotIn("\nhooks:", manifest)
 

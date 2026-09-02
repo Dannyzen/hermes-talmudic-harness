@@ -1,12 +1,12 @@
 name: talmudic-harness
-version: 0.2.1
+version: 0.2.2
 manifest_version: 1
 author: Danny Rosen
 description: >-
-  Talmudic AI harness as a user plugin: Amoraic question refinement,
-  deterministic Chavrusa proposer/challenger briefs, Teaching Friend
-  verification requests, and Eduyot rejected-branch JSONL ledger. Survives
-  hermes update without carried core commits.
+  Use for contested or irreversible decisions. Ranked question matrix,
+  isolated Grok vs Codex briefs, skipped-step check, and rejected-branch
+  ledger. Does not spawn agents. Survives hermes update without carried
+  core commits.
 provides_tools:
   - talmudic_harness
 provides_hooks:
